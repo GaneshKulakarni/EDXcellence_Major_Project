@@ -42,11 +42,11 @@ const courseData = {
         { title: 'Data Science Project Bootcamp', description: 'Build a portfolio of 10 real-world data projects.', instructorName: 'Dr. Sarah Wilson', duration: 50 * 3600, lessons: 150, price: 1299, level: 'Advanced', thumbUrl: 'https://images.unsplash.com/photo-1504868584819-f8e90526354c?q=80&w=800&auto=format&fit=crop' }
     ],
     'Machine Learning': [
-        { title: 'Machine Learning with Python', description: 'Learn Scikit-Learn, Regression, Classification, and more.', instructorName: 'Michael Chen', duration: 24 * 3600, lessons: 80, price: 599, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=800&auto=format&fit=crop' },
+        { title: 'Machine Learning with Python', description: 'Learn Scikit-Learn, Regression, Classification, and more.', instructorName: 'Michael Chen', duration: 24 * 3600, lessons: 80, price: 599, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1551288049-bbbda5366391?q=80&w=800&auto=format&fit=crop' },
         { title: 'Deep Learning Fundamentals', description: 'Introduction to Neural Networks and Deep Learning.', instructorName: 'Michael Chen', duration: 18 * 3600, lessons: 65, price: 499, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800&auto=format&fit=crop' },
-        { title: 'Neural Networks from Scratch', description: 'Understand the math and code behind neurons.', instructorName: 'Dr. Sarah Wilson', duration: 10 * 3600, lessons: 45, price: 0, level: 'Advanced', thumbUrl: 'https://images.unsplash.com/photo-1507146426996-ef05306b995a?q=80&w=800&auto=format&fit=crop' },
-        { title: 'Computer Vision with OpenCV', description: 'How computers see and understand images.', instructorName: 'Vision Expert', duration: 15 * 3600, lessons: 55, price: 699, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop' },
-        { title: 'NLP with Transformers', description: 'The modern way to handle text and language.', instructorName: 'NLP Pro', duration: 12 * 3600, lessons: 40, price: 799, level: 'Advanced', thumbUrl: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=800&auto=format&fit=crop' }
+        { title: 'Neural Networks from Scratch', description: 'Understand the math and code behind neurons.', instructorName: 'Dr. Sarah Wilson', duration: 10 * 3600, lessons: 45, price: 0, level: 'Advanced', thumbUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4628c675c?q=80&w=800&auto=format&fit=crop' },
+        { title: 'Computer Vision with OpenCV', description: 'How computers see and understand images.', instructorName: 'Vision Expert', duration: 15 * 3600, lessons: 55, price: 699, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1527430253228-e90321c8538c?q=80&w=800&auto=format&fit=crop' },
+        { title: 'NLP with Transformers', description: 'The modern way to handle text and language.', instructorName: 'NLP Pro', duration: 12 * 3600, lessons: 40, price: 799, level: 'Advanced', thumbUrl: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop' }
     ],
     'DevOps': [
         { title: 'Docker & Kubernetes Bootcamp', description: 'Master containerization and orchestration.', instructorName: 'Alex Rivera', duration: 25 * 3600, lessons: 90, price: 699, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1605752683092-7a3c1a2e7c0b?q=80&w=800&auto=format&fit=crop' },
@@ -77,24 +77,29 @@ const courseData = {
         { title: 'Email Marketing Secrets', description: 'Turn leads into customers with automation.', instructorName: 'Email Pro', duration: 8 * 3600, lessons: 30, price: 0, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=800&auto=format&fit=crop' }
     ],
     'Photography': [
-        { title: 'Photography Fundamentals', description: 'Master your camera and lighting.', instructorName: 'Lens Master', duration: 10 * 3600, lessons: 40, price: 499, level: 'Beginner', thumbUrl: 'https://images.unsplash.com/photo-1542038783-0ad442d7da69?q=80&w=800&auto=format&fit=crop' },
+        { title: 'Photography Fundamentals', description: 'Master your camera and lighting.', instructorName: 'Lens Master', duration: 10 * 3600, lessons: 40, price: 499, level: 'Beginner', thumbUrl: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop' },
         { title: 'Lightroom Classic Masterclass', description: 'Professional editing for your photos.', instructorName: 'Editor Joe', duration: 12 * 3600, lessons: 45, price: 299, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1542038783-0ad442d7da69?q=80&w=800&auto=format&fit=crop' },
-        { title: 'Street Photography Basics', description: 'Capturing moments in the concrete jungle.', instructorName: 'Urban Eye', duration: 8 * 3600, lessons: 30, price: 199, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1493863641943-9b68992a8d07?q=80&w=800&auto=format&fit=crop' },
-        { title: 'Portrait Photography Secrets', description: 'How to take stunning headshots and portraits.', instructorName: 'Portrait Pro', duration: 15 * 3600, lessons: 55, price: 599, level: 'Advanced', thumbUrl: 'https://images.unsplash.com/photo-1542038783-0ad442d7da69?q=80&w=800&auto=format&fit=crop' },
+        { title: 'Street Photography Basics', description: 'Capturing moments in the concrete jungle.', instructorName: 'Urban Eye', duration: 8 * 3600, lessons: 30, price: 199, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1507090960745-b32f65d0b13a?q=80&w=800&auto=format&fit=crop' },
+        { title: 'Portrait Photography Secrets', description: 'How to take stunning headshots and portraits.', instructorName: 'Portrait Pro', duration: 15 * 3600, lessons: 55, price: 599, level: 'Advanced', thumbUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop' },
         { title: 'Mobile Photography Pro', description: 'Take world-class photos with your phone.', instructorName: 'Phone Photographer', duration: 5 * 3600, lessons: 20, price: 0, level: 'Beginner', thumbUrl: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop' }
     ],
     'Music': [
         { title: 'Music Production Masterclass', description: 'Produce professional tracks in Ableton.', instructorName: 'Beat Maker', duration: 20 * 3600, lessons: 70, price: 699, level: 'Beginner', thumbUrl: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop' },
         { title: 'Piano for Beginners', description: 'Learn to play your favorite songs fast.', instructorName: 'Piano Pro', duration: 15 * 3600, lessons: 60, price: 399, level: 'Beginner', thumbUrl: 'https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=800&auto=format&fit=crop' },
         { title: 'Guitar Mastery Bootcamp', description: 'From first chords to solo brilliance.', instructorName: 'Guitar Hero', duration: 18 * 3600, lessons: 65, price: 0, level: 'Beginner', thumbUrl: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?q=80&w=800&auto=format&fit=crop' },
-        { title: 'Vocal Coaching Masterclass', description: 'Unlock the power of your singing voice.', instructorName: 'Voice Expert', duration: 12 * 3600, lessons: 40, price: 499, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1460039230329-eb072f4721cc?q=80&w=800&auto=format&fit=crop' },
+        { title: 'Vocal Coaching Masterclass', description: 'Unlock the power of your singing voice.', instructorName: 'Voice Expert', duration: 12 * 3600, lessons: 40, price: 499, level: 'Intermediate', thumbUrl: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=800&auto=format&fit=crop' },
         { title: 'Music Theory Explained', description: 'The foundations of melody and harmony.', instructorName: 'Theory Guru', duration: 10 * 3600, lessons: 35, price: 299, level: 'All Levels', thumbUrl: 'https://images.unsplash.com/photo-1507838153414-b4b713384a76?q=80&w=800&auto=format&fit=crop' }
     ]
 };
 
 const seedDatabase = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI);
+        const uri = 'mongodb://localhost:27017/learnhub';
+        console.log(`Connecting to local DB: ${uri}`);
+
+        await mongoose.connect(uri, {
+            serverSelectionTimeoutMS: 5000,
+        });
         console.log('✅ Connected to MongoDB for seeding...');
 
         // 1. Create a dummy instructor if none exists
@@ -119,7 +124,12 @@ const seedDatabase = async () => {
                 // Check if course already exists
                 const existing = await Course.findOne({ title: c.title });
                 if (existing) {
-                    console.log(`⏩ Skipping existing course: ${c.title}`);
+                    await Course.findByIdAndUpdate(existing._id, {
+                        thumbnail: c.thumbUrl,
+                        description: c.description,
+                        shortDescription: c.description.substring(0, 100) + '...'
+                    });
+                    console.log(`🆙 Updated course: ${c.title}`);
                     continue;
                 }
 
