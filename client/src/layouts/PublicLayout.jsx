@@ -26,122 +26,97 @@ export default function PublicLayout() {
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             {/* Navbar */}
-            <nav style={{
-                background: 'white',
-                borderBottom: '1px solid var(--border)',
-                position: 'sticky',
-                top: 0,
-                zIndex: 100,
-                boxShadow: '0 2px 12px rgba(0,0,0,0.05)'
-            }}>
-                <div className="container" style={{ height: '68px', display: 'flex', alignItems: 'center', gap: '24px' }}>
+            <nav className="navbar">
+                <div className="container navbar-container">
                     {/* Logo */}
-                    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-                        <div style={{
-                            width: '36px', height: '36px',
-                            background: 'var(--gradient-primary)',
-                            borderRadius: '10px',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center'
-                        }}>
+                    <Link to="/" className="navbar-logo">
+                        <div className="navbar-logo-icon">
                             <GraduationCap size={20} color="white" />
                         </div>
-                        <span style={{
-                            fontSize: '1.25rem', fontWeight: '800',
-                            fontFamily: 'Plus Jakarta Sans, sans-serif',
-                            background: 'var(--gradient-primary)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent'
-                        }}>LearnHub</span>
+                        <span className="navbar-logo-text">LearnHub</span>
                     </Link>
 
-                    {/* Nav Links */}
-                    <div className="flex gap-2" style={{ display: 'flex', alignItems: 'center', gap: '4px', marginLeft: '8px' }}>
-                        <Link to="/courses" style={{
-                            padding: '8px 16px', borderRadius: 'var(--radius-md)',
-                            fontWeight: '500', fontSize: '0.875rem', color: 'var(--text-secondary)',
-                            transition: 'var(--transition)'
-                        }}
-                            className={location.pathname === '/courses' ? 'text-primary' : ''}
-                        >Browse Courses</Link>
-                    </div>
+                    {/* Mobile Menu Toggle */}
+                    <button className="mobile-menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                        {menuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
 
-                    {/* Search */}
-                    <div className="search-input-wrap" style={{ flex: 1, maxWidth: '360px', marginLeft: 'auto' }}>
-                        <Search className="search-icon" size={16} />
-                        <input
-                            className="search-input"
-                            placeholder="Search courses..."
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' && e.target.value.trim()) {
-                                    navigate(`/courses?search=${encodeURIComponent(e.target.value.trim())}`);
-                                }
-                            }}
-                        />
-                    </div>
+                    {/* Nav Content */}
+                    <div className={`navbar-content ${menuOpen ? 'active' : ''}`}>
+                        {/* Nav Links */}
+                        <div className="navbar-links">
+                            <Link to="/courses" 
+                                className={`nav-link ${location.pathname === '/courses' ? 'active' : ''}`}
+                                onClick={() => setMenuOpen(false)}
+                            >Browse Courses</Link>
+                        </div>
 
-                    {/* Auth */}
-                    <div className="flex items-center gap-3">
-                        {token && user ? (
-                            <>
-                                <Link to={getDashboardLink()} className="btn btn-ghost btn-sm" style={{ gap: '6px' }}>
-                                    <LayoutDashboard size={16} /> Dashboard
-                                </Link>
-                                <div style={{ position: 'relative' }}>
-                                    <button
-                                        onClick={() => setProfileOpen(!profileOpen)}
-                                        style={{
-                                            display: 'flex', alignItems: 'center', gap: '8px',
-                                            padding: '6px 12px', borderRadius: 'var(--radius-md)',
-                                            border: '1px solid var(--border)', background: 'white', cursor: 'pointer',
-                                            transition: 'var(--transition)'
-                                        }}
-                                    >
-                                        <div className="avatar avatar-sm" style={{ width: '30px', height: '30px', fontSize: '0.75rem', background: user.avatar ? 'none' : 'var(--gradient-primary)' }}>
-                                            {user.avatar
-                                                ? <img src={user.avatar} alt={user.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
-                                                : user.name?.charAt(0).toUpperCase()
-                                            }
-                                        </div>
-                                        <span style={{ fontSize: '0.85rem', fontWeight: '600', maxWidth: '100px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{user.name?.split(' ')[0]}</span>
-                                        <ChevronDown size={14} style={{ color: 'var(--text-muted)' }} />
-                                    </button>
-                                    {profileOpen && (
-                                        <div style={{
-                                            position: 'absolute', right: 0, top: 'calc(100% + 8px)',
-                                            background: 'white', border: '1px solid var(--border)',
-                                            borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-xl)',
-                                            minWidth: '200px', overflow: 'hidden', zIndex: 200,
-                                            animation: 'slideUp 0.2s ease'
-                                        }}>
-                                            <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--border)' }}>
-                                                <div style={{ fontWeight: '600', fontSize: '0.9rem' }}>{user.name}</div>
-                                                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{user.email}</div>
+                        {/* Search */}
+                        <div className="navbar-search">
+                            <Search className="search-icon" size={16} />
+                            <input
+                                className="search-input"
+                                placeholder="Search courses..."
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' && e.target.value.trim()) {
+                                        navigate(`/courses?search=${encodeURIComponent(e.target.value.trim())}`);
+                                        setMenuOpen(false);
+                                    }
+                                }}
+                            />
+                        </div>
+
+                        {/* Auth */}
+                        <div className="navbar-auth">
+                            {token && user ? (
+                                <>
+                                    <Link to={getDashboardLink()} className="btn btn-ghost btn-sm nav-dashboard-btn" onClick={() => setMenuOpen(false)}>
+                                        <LayoutDashboard size={16} /> Dashboard
+                                    </Link>
+                                    <div className="profile-dropdown-container">
+                                        <button
+                                            className="profile-trigger"
+                                            onClick={() => setProfileOpen(!profileOpen)}
+                                        >
+                                            <div className="avatar avatar-sm" style={{ width: '30px', height: '30px', fontSize: '0.75rem', background: user.avatar ? 'none' : 'var(--gradient-primary)' }}>
+                                                {user.avatar
+                                                    ? <img src={user.avatar} alt={user.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                                                    : user.name?.charAt(0).toUpperCase()
+                                                }
                                             </div>
-                                            <Link to={getDashboardLink()} onClick={() => setProfileOpen(false)}
-                                                style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 16px', color: 'var(--text-secondary)', fontSize: '0.875rem', transition: 'var(--transition)' }}>
-                                                <LayoutDashboard size={16} /> Dashboard
-                                            </Link>
-                                            <button onClick={handleLogout}
-                                                style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 16px', color: 'var(--error)', fontSize: '0.875rem', background: 'none', border: 'none', cursor: 'pointer', width: '100%', transition: 'var(--transition)' }}>
-                                                <LogOut size={16} /> Log Out
-                                            </button>
-                                        </div>
-                                    )}
+                                            <span className="profile-name">{user.name?.split(' ')[0]}</span>
+                                            <ChevronDown size={14} className="profile-chevron" />
+                                        </button>
+                                        {profileOpen && (
+                                            <div className="profile-dropdown">
+                                                <div className="profile-dropdown-header">
+                                                    <div className="profile-dropdown-name">{user.name}</div>
+                                                    <div className="profile-dropdown-email">{user.email}</div>
+                                                </div>
+                                                <Link to={getDashboardLink()} onClick={() => { setProfileOpen(false); setMenuOpen(false); }} className="profile-dropdown-item">
+                                                    <LayoutDashboard size={16} /> Dashboard
+                                                </Link>
+                                                <button onClick={handleLogout} className="profile-dropdown-item logout-btn">
+                                                    <LogOut size={16} /> Log Out
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="auth-buttons">
+                                    <Link to="/login" className="btn btn-ghost btn-sm" onClick={() => setMenuOpen(false)}>Log In</Link>
+                                    <Link to="/register" className="btn btn-primary btn-sm" onClick={() => setMenuOpen(false)}>Get Started</Link>
                                 </div>
-                            </>
-                        ) : (
-                            <>
-                                <Link to="/login" className="btn btn-ghost btn-sm">Log In</Link>
-                                <Link to="/register" className="btn btn-primary btn-sm">Get Started</Link>
-                            </>
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
             </nav>
 
             {/* Click outside to close */}
-            {profileOpen && (
-                <div style={{ position: 'fixed', inset: 0, zIndex: 99 }} onClick={() => setProfileOpen(false)} />
+            {(profileOpen || menuOpen) && (
+                <div className="overlay" onClick={() => { setProfileOpen(false); setMenuOpen(false); }} />
             )}
 
             {/* Main content */}

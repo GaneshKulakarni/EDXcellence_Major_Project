@@ -47,40 +47,33 @@ export default function LoginPage() {
     };
 
     return (
-        <div style={{
-            minHeight: '100vh', display: 'flex',
-            background: 'linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%)'
-        }}>
+        <div className="auth-container">
             {/* Left panel */}
-            <div style={{
-                flex: '1', background: 'var(--gradient-hero)',
-                display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px 80px',
-                color: 'white', position: 'relative', overflow: 'hidden'
-            }}>
-                <div style={{ position: 'absolute', inset: 0, opacity: 0.1 }}
+            <div className="auth-sidebar">
+                <div className="auth-sidebar-overlay"
                     dangerouslySetInnerHTML={{ __html: `<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="white"/></pattern><rect width="100%" height="100%" fill="url(#dots)"/></svg>` }}
                 />
-                <div style={{ position: 'relative', zIndex: 1 }}>
-                    <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '60px' }}>
-                        <div style={{ width: '44px', height: '44px', background: 'rgba(255,255,255,0.2)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="auth-sidebar-content">
+                    <Link to="/" className="auth-logo">
+                        <div className="auth-logo-icon">
                             <GraduationCap size={24} color="white" />
                         </div>
-                        <span style={{ fontSize: '1.5rem', fontWeight: '800' }}>LearnHub</span>
+                        <span className="auth-logo-text">LearnHub</span>
                     </Link>
 
-                    <h1 style={{ fontSize: '2.5rem', fontWeight: '900', color: 'white', marginBottom: '16px', lineHeight: 1.2 }}>
+                    <h1 className="auth-welcome-title">
                         Welcome back,<br />Learner! 👋
                     </h1>
-                    <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '1rem', maxWidth: '400px', lineHeight: '1.7', marginBottom: '40px' }}>
+                    <p className="auth-welcome-desc">
                         Continue your learning journey. Pick up exactly where you left off.
                     </p>
 
                     {/* Stats */}
-                    <div style={{ display: 'flex', gap: '32px' }}>
+                    <div className="auth-stats">
                         {[{ val: '50K+', label: 'Learners' }, { val: '1.2K+', label: 'Courses' }, { val: '4.8★', label: 'Rating' }].map(s => (
                             <div key={s.label}>
-                                <div style={{ fontSize: '1.5rem', fontWeight: '800', color: 'white' }}>{s.val}</div>
-                                <div style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.65)' }}>{s.label}</div>
+                                <div className="auth-stat-value">{s.val}</div>
+                                <div className="auth-stat-label">{s.label}</div>
                             </div>
                         ))}
                     </div>
@@ -88,36 +81,29 @@ export default function LoginPage() {
             </div>
 
             {/* Right panel */}
-            <div style={{ width: '480px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '60px 48px' }}>
-                <div style={{ marginBottom: '36px' }}>
-                    <h2 style={{ fontSize: '1.75rem', fontWeight: '800', marginBottom: '8px' }}>Sign In</h2>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                        Don't have an account? <Link to="/register" style={{ color: 'var(--primary)', fontWeight: '600' }}>Sign up free</Link>
+            <div className="auth-form-wrapper">
+                <div className="auth-form-header">
+                    <h2 className="auth-form-title">Sign In</h2>
+                    <p className="auth-form-subtitle">
+                        Don't have an account? <Link to="/register" className="auth-link">Sign up free</Link>
                     </p>
                 </div>
 
                 {/* Demo logins */}
-                <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--radius-lg)', padding: '16px', marginBottom: '24px' }}>
-                    <div style={{ fontSize: '0.75rem', fontWeight: '600', color: 'var(--text-muted)', marginBottom: '10px', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                <div className="demo-login-box">
+                    <div className="demo-login-label">
                         Quick Demo Login
                     </div>
-                    <div style={{ display: 'flex', gap: '8px' }}>
+                    <div className="demo-login-buttons">
                         {['admin', 'instructor', 'student'].map(role => (
-                            <button key={role} onClick={() => loginAsDemo(role)} style={{
-                                flex: 1, padding: '8px', borderRadius: 'var(--radius-md)',
-                                border: '1.5px solid var(--border)', background: 'white',
-                                cursor: 'pointer', fontSize: '0.75rem', fontWeight: '600',
-                                color: 'var(--text-secondary)', transition: 'var(--transition)',
-                                textTransform: 'capitalize'
-                            }}
-                                onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'var(--primary-bg)'; }}
-                                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.background = 'white'; }}
+                            <button key={role} onClick={() => loginAsDemo(role)} className="demo-btn"
+                                textTransform="capitalize"
                             >{role}</button>
                         ))}
                     </div>
                 </div>
 
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <form onSubmit={handleSubmit} className="auth-form">
                     <div className="form-group">
                         <label className="form-label">Email Address</label>
                         <div className="input-group">
@@ -151,7 +137,7 @@ export default function LoginPage() {
                             <button
                                 type="button"
                                 onClick={() => setShowPass(!showPass)}
-                                style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-muted)' }}
+                                className="password-toggle"
                             >
                                 {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
                             </button>
@@ -160,13 +146,12 @@ export default function LoginPage() {
 
                     <button
                         type="submit"
-                        className="btn btn-primary btn-lg"
+                        className="btn btn-primary btn-lg auth-submit-btn"
                         disabled={loading}
-                        style={{ marginTop: '8px', justifyContent: 'center' }}
                     >
                         {loading ? (
-                            <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                <span style={{ width: '16px', height: '16px', border: '2px solid rgba(255,255,255,0.3)', borderTop: '2px solid white', borderRadius: '50%', animation: 'spin 0.8s linear infinite', display: 'inline-block' }} />
+                            <span className="flex items-center gap-2">
+                                <span className="spinner-sm" />
                                 Signing in...
                             </span>
                         ) : (

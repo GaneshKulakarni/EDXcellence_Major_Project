@@ -8,14 +8,14 @@ import {
 } from 'lucide-react';
 
 const CATEGORIES = [
-    { name: 'Web Development', icon: '💻', count: '1.2k' },
-    { name: 'Data Science', icon: '📊', count: '890' },
-    { name: 'Mobile Development', icon: '📱', count: '650' },
-    { name: 'Machine Learning', icon: '🤖', count: '540' },
-    { name: 'DevOps', icon: '⚙️', count: '320' },
-    { name: 'Design', icon: '🎨', count: '780' },
-    { name: 'Business', icon: '💼', count: '410' },
-    { name: 'Photography', icon: '📸', count: '220' },
+    { name: 'Web Development', image: '/images/web-dev.png', count: '1.2k' },
+    { name: 'Data Science', image: '/images/data-science.png', count: '890' },
+    { name: 'Mobile Development', image: '/images/mobile-dev.png', count: '650' },
+    { name: 'Machine Learning', image: '/images/machine-learning.png', count: '540' },
+    { name: 'DevOps', image: '/images/devops.png', count: '320' },
+    { name: 'Design', image: '/images/design.png', count: '780' },
+    { name: 'Business', image: '/images/business.png', count: '410' },
+    { name: 'Photography', image: '/images/photography.png', count: '220' },
 ];
 
 const FEATURES = [
@@ -74,25 +74,14 @@ export default function HomePage() {
                             </p>
 
                             {/* Search */}
-                            <form onSubmit={handleSearch} style={{
-                                display: 'flex', gap: '12px',
-                                background: 'rgba(255,255,255,0.15)',
-                                backdropFilter: 'blur(12px)',
-                                border: '1px solid rgba(255,255,255,0.3)',
-                                borderRadius: 'var(--radius-xl)',
-                                padding: '8px 8px 8px 20px',
-                                maxWidth: '520px'
-                            }}>
+                            <form onSubmit={handleSearch} className="hero-search-form">
                                 <input
                                     value={searchQuery}
                                     onChange={e => setSearchQuery(e.target.value)}
                                     placeholder="What do you want to learn?"
-                                    style={{
-                                        flex: 1, background: 'transparent', border: 'none', outline: 'none',
-                                        color: 'white', fontSize: '0.95rem'
-                                    }}
+                                    className="hero-search-input"
                                 />
-                                <button type="submit" className="hero-btn-primary" style={{ padding: '12px 24px', borderRadius: 'var(--radius-lg)' }}>
+                                <button type="submit" className="hero-btn-primary search-submit-btn">
                                     Search
                                 </button>
                             </form>
@@ -187,39 +176,20 @@ export default function HomePage() {
                         </Link>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px' }}>
+                    <div className="category-grid">
                         {CATEGORIES.map((cat, i) => (
                             <Link
                                 key={cat.name}
                                 to={`/courses?category=${encodeURIComponent(cat.name)}`}
-                                style={{
-                                    display: 'flex', flexDirection: 'column', alignItems: 'center',
-                                    padding: '28px 20px',
-                                    background: 'white',
-                                    border: '1.5px solid var(--border)',
-                                    borderRadius: 'var(--radius-lg)',
-                                    textAlign: 'center',
-                                    transition: 'var(--transition-slow)',
-                                    cursor: 'pointer',
-                                    textDecoration: 'none',
-                                    gap: '12px',
-                                    boxShadow: 'var(--shadow-sm)'
-                                }}
-                                onMouseEnter={e => {
-                                    e.currentTarget.style.transform = 'translateY(-4px)';
-                                    e.currentTarget.style.borderColor = 'var(--primary)';
-                                    e.currentTarget.style.boxShadow = 'var(--shadow-primary)';
-                                }}
-                                onMouseLeave={e => {
-                                    e.currentTarget.style.transform = 'translateY(0)';
-                                    e.currentTarget.style.borderColor = 'var(--border)';
-                                    e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
-                                }}
+                                className="category-card"
                             >
-                                <span style={{ fontSize: '2.5rem' }}>{cat.icon}</span>
-                                <div>
-                                    <div style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--text-primary)' }}>{cat.name}</div>
-                                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '2px' }}>{cat.count} courses</div>
+                                <div className="category-card-image-wrap">
+                                    <img src={cat.image} alt={cat.name} className="category-card-image" />
+                                    <div className="category-card-overlay" />
+                                </div>
+                                <div className="category-card-content">
+                                    <div className="category-card-name">{cat.name}</div>
+                                    <div className="category-card-count">{cat.count} courses</div>
                                 </div>
                             </Link>
                         ))}
@@ -302,21 +272,25 @@ export default function HomePage() {
             </section>
 
             {/* ===== CTA ===== */}
-            <section style={{ padding: '80px 0', background: 'var(--gradient-hero)' }}>
-                <div className="container" style={{ textAlign: 'center' }}>
-                    <h2 style={{ fontSize: '2.5rem', fontWeight: '900', color: 'white', marginBottom: '16px' }}>
-                        Ready to Start Learning?
-                    </h2>
-                    <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.1rem', marginBottom: '36px', maxWidth: '500px', margin: '0 auto 36px' }}>
-                        Join 50K+ learners who are already building their future.
-                    </p>
-                    <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                        <Link to="/register" className="hero-btn-primary" style={{ padding: '16px 32px', fontSize: '1rem', borderRadius: '12px' }}>
-                            Get Started Free →
-                        </Link>
-                        <Link to="/courses" className="hero-btn-outline" style={{ padding: '16px 32px', fontSize: '1rem', borderRadius: '12px' }}>
-                            Browse Courses
-                        </Link>
+            <section className="cta-section">
+                <div className="cta-container container">
+                    <img src="/images/cta-banner.png" alt="Call to Action" className="cta-background" />
+                    <div className="cta-overlay" />
+                    <div className="cta-content">
+                        <h2 className="cta-title">
+                            Ready to Start Learning?
+                        </h2>
+                        <p className="cta-desc">
+                            Join 50K+ learners who are already building their future with our expert-led courses.
+                        </p>
+                        <div className="cta-buttons">
+                            <Link to="/register" className="hero-btn-primary cta-btn">
+                                Get Started Free →
+                            </Link>
+                            <Link to="/courses" className="hero-btn-outline cta-btn">
+                                Browse Courses
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
