@@ -71,6 +71,7 @@ app.get('/api/debug-seed-fix', async (req, res) => {
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/users', require('./routes/user.routes'));
 app.use('/api/courses', require('./routes/course.routes'));
+app.use('/api/cart', require('./routes/cart.routes'));
 app.use('/api/enrollments', require('./routes/enrollment.routes'));
 app.use('/api/quizzes', require('./routes/quiz.routes'));
 app.use('/api/reviews', require('./routes/review.routes'));
@@ -91,7 +92,7 @@ app.use((req, res) => {
 // Global error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  const statusCode = err.statusCode || 500;
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
   res.status(statusCode).json({
     message: err.message || 'Internal Server Error',
     ...(process.env.NODE_ENV === 'development' && { stack: err.stack })

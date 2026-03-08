@@ -16,6 +16,7 @@ import MyCoursesPage from './pages/student/MyCoursesPage';
 import LearnPage from './pages/student/LearnPage';
 import StudentProfilePage from './pages/student/StudentProfilePage';
 import QuizPage from './pages/student/QuizPage';
+import CartPage from './pages/student/CartPage';
 
 // Instructor Pages
 import InstructorDashboard from './pages/instructor/InstructorDashboard';
@@ -90,6 +91,7 @@ function App() {
           <Route path="/student/courses" element={<MyCoursesPage />} />
           <Route path="/student/profile" element={<StudentProfilePage />} />
           <Route path="/student/quiz/:quizId" element={<QuizPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Route>
 
         {/* Learn page - full screen */}

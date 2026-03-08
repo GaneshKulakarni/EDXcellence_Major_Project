@@ -28,6 +28,7 @@ export default function CourseDetailPage() {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [enrolling, setEnrolling] = useState(false);
+    const [addingToCart, setAddingToCart] = useState(false);
     const [expandedSections, setExpandedSections] = useState({});
     const [activeTab, setActiveTab] = useState('overview');
 
@@ -42,7 +43,7 @@ export default function CourseDetailPage() {
                 setIsEnrolled(courseRes.data.isEnrolled);
                 setReviews(reviewsRes.data.reviews || []);
             } catch (err) {
-                console.error(err);
+                console.error('Error fetching course details:', err);
             } finally {
                 setLoading(false);
             }
@@ -62,6 +63,19 @@ export default function CourseDetailPage() {
             toast.error(err.response?.data?.message || 'Enrollment failed');
         } finally {
             setEnrolling(false);
+        }
+    };
+
+    const handleAddToCart = async () => {
+        if (!token) { navigate('/login'); return; }
+        setAddingToCart(true);
+        try {
+            await api.post('/cart/add', { courseId: id });
+            toast.success('🛒 Course added to cart!');
+        } catch (err) {
+            toast.error(err.response?.data?.message || 'Failed to add to cart');
+        } finally {
+            setAddingToCart(false);
         }
     };
 
@@ -202,14 +216,27 @@ export default function CourseDetailPage() {
                                     <Link to={`/learn/${id}`} className="btn btn-success w-full btn-lg" style={{ width: '100%', justifyContent: 'center' }}>
                                         <Play size={18} /> Continue Learning
                                     </Link>
-                                ) : (
+                                ) : !token ? (
+                                    <Link to="/login" className="btn btn-primary btn-lg" style={{ width: '100%', justifyContent: 'center' }}>
+                                        Login to Enroll
+                                    </Link>
+                                ) : course.price === 0 ? (
                                     <button
                                         onClick={handleEnroll}
                                         disabled={enrolling}
+                                        className="btn btn-success btn-lg"
+                                        style={{ width: '100%' }}
+                                    >
+                                        {enrolling ? 'Enrolling...' : '🚀 Enroll Now'}
+                                    </button>
+                                ) : (
+                                    <button
+                                        onClick={handleAddToCart}
+                                        disabled={addingToCart}
                                         className="btn btn-primary btn-lg"
                                         style={{ width: '100%' }}
                                     >
-                                        {enrolling ? 'Enrolling...' : course.price === 0 ? '🚀 Enroll for Free' : '💳 Enroll Now'}
+                                        {addingToCart ? 'Adding...' : '� Add to Cart'}
                                     </button>
                                 )}
 

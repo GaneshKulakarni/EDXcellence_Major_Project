@@ -4,13 +4,14 @@ import useAuthStore from '../store/authStore';
 import {
     LayoutDashboard, BookOpen, Users, GraduationCap, Settings,
     LogOut, Bell, Menu, X, ChevronRight, Trophy, BarChart3,
-    PlusCircle, ClipboardList, CheckSquare, Star, Home
+    PlusCircle, ClipboardList, CheckSquare, Star, Home, ShoppingCart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const studentNav = [
     { label: 'Overview', href: '/student/dashboard', icon: LayoutDashboard },
     { label: 'My Courses', href: '/student/courses', icon: BookOpen },
+    { label: 'Cart', href: '/cart', icon: ShoppingCart },
     { label: 'Profile', href: '/student/profile', icon: Settings },
 ];
 

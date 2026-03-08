@@ -121,7 +121,7 @@ export default function CourseCard({ course, showProgress = false, progress = 0 
                                 </span>
                             )}
                             <span style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                                <Users size={11} /> {course.enrolledCount || 0}
+                                <Users size={11} /> {(course.enrolledCount || 0).toLocaleString()}
                             </span>
                         </div>
                         <div style={{ fontWeight: '800', fontSize: '0.9rem', color: course.price === 0 ? 'var(--success)' : 'var(--text-primary)' }}>

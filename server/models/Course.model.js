@@ -38,7 +38,23 @@ const courseSchema = new mongoose.Schema(
             maxlength: [2000, 'Description cannot exceed 2000 characters']
         },
         shortDescription: { type: String, maxlength: [200, 'Short description max 200 chars'], default: '' },
-        thumbnail: { type: String, default: '' },
+        thumbnail: { 
+            type: String, 
+            required: [true, 'Course thumbnail is required'],
+            default: function() {
+                const placeholders = [
+                    'https://source.unsplash.com/800x600/?technology',
+                    'https://source.unsplash.com/800x600/?programming',
+                    'https://source.unsplash.com/800x600/?data-science',
+                    'https://source.unsplash.com/800x600/?design',
+                    'https://source.unsplash.com/800x600/?development',
+                    'https://source.unsplash.com/800x600/?coding',
+                    'https://source.unsplash.com/800x600/?software',
+                    'https://source.unsplash.com/800x600/?computer'
+                ];
+                return placeholders[Math.floor(Math.random() * placeholders.length)];
+            }
+        },
         previewVideo: { type: String, default: '' },
         instructor: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
         category: {

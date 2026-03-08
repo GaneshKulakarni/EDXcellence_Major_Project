@@ -14,7 +14,9 @@ export default function StudentDashboard() {
             try {
                 const { data } = await api.get('/enrollments/my');
                 setEnrollments(data.enrollments || []);
-            } catch { }
+            } catch (err) {
+                console.error('Error fetching enrollments:', err);
+            }
             finally { setLoading(false); }
         };
         fetch();

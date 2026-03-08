@@ -97,7 +97,7 @@ export default function LoginPage() {
                     <div className="demo-login-buttons">
                         {['admin', 'instructor', 'student'].map(role => (
                             <button key={role} onClick={() => loginAsDemo(role)} className="demo-btn"
-                                textTransform="capitalize"
+                                style={{ textTransform: 'capitalize' }}
                             >{role}</button>
                         ))}
                     </div>
