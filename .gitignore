@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Files created by different tools
+.DS_Store
+*.log
+npm-debug.log*
+
+# Environment and sensitive files
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary and test files
+temp.txt
+test_*.js
+migrate_*.js
+check_*.js
+debug_*.js
+fix_*.js
+global_*.js
+diagnose_*.js
+
+# App-specific build/uploads
+dist/
+dist-ssr/
+server/uploads/
+client/dist/
+
+# Editor/OS settings
+.vscode/
+.idea/
+.fleet/
+.sublime-project
+.sublime-workspace

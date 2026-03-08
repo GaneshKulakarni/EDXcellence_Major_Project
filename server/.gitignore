@@ -8,3 +8,13 @@ test_*.js
 migrate_*.js
 check_*.js
 debug_*.js
+fix_*.js
+fixApi*.js
+global*.js
+seed_output.log
+forceFix*.js
+last_fix.js
+diagnose*.js
+updateCourse*.js
+updateThumb*.js
+test_*.spec.js
