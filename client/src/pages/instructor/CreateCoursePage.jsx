@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../lib/api';
 import toast from 'react-hot-toast';
-import { PlusCircle, Trash2, Plus, Save, Eye } from 'lucide-react';
+import { PlusCircle, Trash2, Plus, Save, Eye, BookOpen } from 'lucide-react';
 
 const CATEGORIES = ['Web Development', 'Mobile Development', 'Data Science', 'Machine Learning', 'DevOps', 'Design', 'Business', 'Marketing', 'Photography', 'Music', 'Other'];
 const LEVELS = ['Beginner', 'Intermediate', 'Advanced', 'All Levels'];
