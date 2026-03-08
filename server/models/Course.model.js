@@ -38,10 +38,10 @@ const courseSchema = new mongoose.Schema(
             maxlength: [2000, 'Description cannot exceed 2000 characters']
         },
         shortDescription: { type: String, maxlength: [200, 'Short description max 200 chars'], default: '' },
-        thumbnail: { 
-            type: String, 
+        thumbnail: {
+            type: String,
             required: [true, 'Course thumbnail is required'],
-            default: function() {
+            default: function () {
                 const placeholders = [
                     'https://source.unsplash.com/800x600/?technology',
                     'https://source.unsplash.com/800x600/?programming',
@@ -117,5 +117,17 @@ courseSchema.pre('save', function (next) {
 });
 
 courseSchema.index({ title: 'text', description: 'text', tags: 'text' });
+
+// Virtual for reviews
+courseSchema.virtual('reviews', {
+    ref: 'Review',
+    localField: '_id',
+    foreignField: 'course',
+    justOne: false
+});
+
+// Important: assure virtuals are included when converting to JSON/Object
+courseSchema.set('toObject', { virtuals: true });
+courseSchema.set('toJSON', { virtuals: true });
 
 module.exports = mongoose.model('Course', courseSchema);

@@ -1,4 +1,10 @@
 node_modules/
 .env
+.env.*
 uploads/
 *.log
+temp.txt
+test_*.js
+migrate_*.js
+check_*.js
+debug_*.js
