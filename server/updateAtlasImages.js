@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const directUri = `mongodb://Ganesh:kulkarni123@cluster1-shard-00-00.be8arxv.mongodb.net:27017,cluster1-shard-00-01.be8arxv.mongodb.net:27017,cluster1-shard-00-02.be8arxv.mongodb.net:27017/test?ssl=true&replicaSet=atlas-dhl0v3-shard-0&authSource=admin`;
+const directUri = process.env.ATLAS_URI;
 
 mongoose.connect(directUri, { serverSelectionTimeoutMS: 15000 })
     .then(async () => {
