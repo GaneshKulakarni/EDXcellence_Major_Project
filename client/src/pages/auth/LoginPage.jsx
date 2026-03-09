@@ -26,7 +26,7 @@ export default function LoginPage() {
         }
     };
 
-    const loginAsDemo = async (role) => {
+    const loginAsDemo = (role) => {
         const credentials = {
             admin: { email: 'admin@learnhub.com', password: 'admin123' },
             instructor: { email: 'instructor@learnhub.com', password: 'instructor123' },
@@ -35,15 +35,7 @@ export default function LoginPage() {
         const cred = credentials[role];
         setEmail(cred.email);
         setPassword(cred.password);
-        try {
-            const data = await login(cred.email, cred.password);
-            toast.success(`Logged in as ${role}!`);
-            if (data.user.role === 'admin') navigate('/admin/dashboard');
-            else if (data.user.role === 'instructor') navigate('/instructor/dashboard');
-            else navigate('/student/dashboard');
-        } catch (err) {
-            toast.error('Demo account not set up yet. Please register first.');
-        }
+        toast.success(`${role.charAt(0).toUpperCase() + role.slice(1)} credentials filled!`);
     };
 
     return (
@@ -92,7 +84,7 @@ export default function LoginPage() {
                 {/* Demo logins */}
                 <div className="demo-login-box">
                     <div className="demo-login-label">
-                        Quick Demo Login
+                        Quick Demo Autofill
                     </div>
                     <div className="demo-login-buttons">
                         {['admin', 'instructor', 'student'].map(role => (
