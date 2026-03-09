@@ -56,6 +56,22 @@ export default function CoursesPage() {
         setSearchParams(next);
     };
 
+    // Sync search input with URL
+    useEffect(() => {
+        setSearchInput(search);
+    }, [search]);
+
+    // Debounced search
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (searchInput !== search) {
+                updateParam('search', searchInput);
+            }
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [searchInput, search]);
+
     const handleSearch = (e) => {
         e.preventDefault();
         updateParam('search', searchInput);
