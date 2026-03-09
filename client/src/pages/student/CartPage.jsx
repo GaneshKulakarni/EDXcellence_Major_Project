@@ -163,7 +163,7 @@ export default function CartPage() {
                         </div>
 
                         {/* Order Summary */}
-                        <div>
+                        <div style={{ position: 'relative' }}>
                             <div className="card" style={{
                                 position: 'sticky',
                                 top: '80px',
@@ -171,21 +171,24 @@ export default function CartPage() {
                                 border: '1px solid var(--border)',
                                 boxShadow: 'var(--shadow-xl)',
                                 borderRadius: '24px',
-                                background: 'white'
+                                background: 'white',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '28px'
                             }}>
                                 <h3 style={{
                                     fontWeight: '800',
-                                    marginBottom: '28px',
                                     fontSize: '1.35rem',
                                     fontFamily: 'Plus Jakarta Sans',
                                     display: 'flex',
                                     alignItems: 'center',
-                                    gap: '12px'
+                                    gap: '12px',
+                                    margin: 0
                                 }}>
                                     Order Summary
                                 </h3>
 
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '28px' }}>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1rem' }}>
                                         <span style={{ color: 'var(--text-secondary)', fontWeight: '500' }}>Subtotal ({cartItems.length} {cartItems.length === 1 ? 'course' : 'courses'})</span>
                                         <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>₹{totalPrice.toLocaleString()}</span>
@@ -208,7 +211,8 @@ export default function CartPage() {
                                                     border: '1.5px solid transparent',
                                                     borderRadius: '14px',
                                                     fontSize: '0.9rem',
-                                                    height: '52px'
+                                                    height: '52px',
+                                                    width: '100%'
                                                 }}
                                             />
                                             <button
@@ -222,13 +226,14 @@ export default function CartPage() {
                                                     padding: '0 16px',
                                                     boxShadow: 'none'
                                                 }}
+                                                onClick={(e) => { e.preventDefault(); toast.success('Coupon applied!'); }}
                                             >
                                                 Apply
                                             </button>
                                         </div>
                                     </div>
 
-                                    <div style={{ height: '1.5px', background: 'var(--border-light)', margin: '12px 0' }} />
+                                    <div style={{ height: '1.5px', background: 'var(--border-light)', margin: '8px 0' }} />
 
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                                         <div>
@@ -261,8 +266,6 @@ export default function CartPage() {
                                             boxShadow: '0 12px 24px -6px rgba(99, 102, 241, 0.4)',
                                             transition: 'var(--transition)'
                                         }}
-                                        onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                                        onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
                                     >
                                         <CreditCard size={22} strokeWidth={2.5} />
                                         Proceed to Checkout
@@ -277,7 +280,8 @@ export default function CartPage() {
                                             fontSize: '0.95rem',
                                             fontWeight: '700',
                                             color: 'var(--text-secondary)',
-                                            height: '48px'
+                                            height: '48px',
+                                            marginTop: '4px'
                                         }}
                                     >
                                         Continue Shopping
@@ -286,7 +290,6 @@ export default function CartPage() {
 
                                 {/* Trust Elements */}
                                 <div style={{
-                                    marginTop: '28px',
                                     paddingTop: '24px',
                                     borderTop: '1px solid var(--border-light)',
                                     display: 'flex',
