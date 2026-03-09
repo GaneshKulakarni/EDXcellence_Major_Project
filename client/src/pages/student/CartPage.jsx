@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import api from '../../lib/api';
 import useAuthStore from '../../store/authStore';
 import toast from 'react-hot-toast';
-import { Trash2, ShoppingCart, Plus, Minus, CreditCard, BookOpen, Clock, Users } from 'lucide-react';
+import { Trash2, ShoppingCart, Plus, Minus, CreditCard, BookOpen, Clock, Users, Check, Tag } from 'lucide-react';
 
 export default function CartPage() {
     const { user, token } = useAuthStore();
@@ -164,43 +164,158 @@ export default function CartPage() {
 
                         {/* Order Summary */}
                         <div>
-                            <div className="card" style={{ position: 'sticky', top: '80px' }}>
-                                <h3 style={{ fontWeight: '700', marginBottom: '20px', fontSize: '1.1rem' }}>
+                            <div className="card" style={{
+                                position: 'sticky',
+                                top: '80px',
+                                padding: '32px',
+                                border: '1px solid var(--border)',
+                                boxShadow: 'var(--shadow-xl)',
+                                borderRadius: '24px',
+                                background: 'white'
+                            }}>
+                                <h3 style={{
+                                    fontWeight: '800',
+                                    marginBottom: '28px',
+                                    fontSize: '1.35rem',
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '12px'
+                                }}>
                                     Order Summary
                                 </h3>
-                                
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
-                                        <span style={{ color: 'var(--text-secondary)' }}>Subtotal ({cartItems.length} courses)</span>
-                                        <span style={{ fontWeight: '600' }}>₹{totalPrice.toLocaleString()}</span>
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '28px' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1rem' }}>
+                                        <span style={{ color: 'var(--text-secondary)', fontWeight: '500' }}>Subtotal ({cartItems.length} {cartItems.length === 1 ? 'course' : 'courses'})</span>
+                                        <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>₹{totalPrice.toLocaleString()}</span>
                                     </div>
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem' }}>
-                                        <span style={{ color: 'var(--text-secondary)' }}>Tax</span>
-                                        <span style={{ fontWeight: '600' }}>₹0</span>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1rem' }}>
+                                        <span style={{ color: 'var(--text-secondary)', fontWeight: '500' }}>Tax</span>
+                                        <span style={{ fontWeight: '700', color: 'var(--text-primary)' }}>₹0</span>
                                     </div>
-                                    <div style={{ height: '1px', background: 'var(--border)', margin: '8px 0' }} />
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.1rem', fontWeight: '700' }}>
-                                        <span>Total</span>
-                                        <span style={{ color: 'var(--primary)' }}>₹{totalPrice.toLocaleString()}</span>
+
+                                    {/* Coupon Section */}
+                                    <div style={{ marginTop: '8px' }}>
+                                        <div className="input-group" style={{ position: 'relative' }}>
+                                            <Tag size={16} className="input-icon" style={{ left: '16px' }} />
+                                            <input
+                                                className="form-input"
+                                                placeholder="Enter Coupon Code"
+                                                style={{
+                                                    paddingLeft: '44px',
+                                                    background: 'var(--bg-input)',
+                                                    border: '1.5px solid transparent',
+                                                    borderRadius: '14px',
+                                                    fontSize: '0.9rem',
+                                                    height: '52px'
+                                                }}
+                                            />
+                                            <button
+                                                className="btn btn-primary btn-sm"
+                                                style={{
+                                                    position: 'absolute',
+                                                    right: '6px',
+                                                    top: '6px',
+                                                    bottom: '6px',
+                                                    borderRadius: '10px',
+                                                    padding: '0 16px',
+                                                    boxShadow: 'none'
+                                                }}
+                                            >
+                                                Apply
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div style={{ height: '1.5px', background: 'var(--border-light)', margin: '12px 0' }} />
+
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                                        <div>
+                                            <span style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--text-primary)' }}>Total Amount</span>
+                                            <p style={{ margin: '4px 0 0', fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: '500' }}>Inclusive of all taxes</p>
+                                        </div>
+                                        <span style={{
+                                            fontSize: '2rem',
+                                            fontWeight: '900',
+                                            color: 'var(--primary)',
+                                            letterSpacing: '-0.03em',
+                                            lineHeight: 1
+                                        }}>
+                                            ₹{totalPrice.toLocaleString()}
+                                        </span>
                                     </div>
                                 </div>
 
-                                <button
-                                    onClick={handleCheckout}
-                                    className="btn btn-primary btn-lg"
-                                    style={{ width: '100%', justifyContent: 'center', gap: '8px' }}
-                                >
-                                    <CreditCard size={20} />
-                                    Proceed to Checkout
-                                </button>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                    <button
+                                        onClick={handleCheckout}
+                                        className="btn btn-primary btn-lg"
+                                        style={{
+                                            width: '100%',
+                                            justifyContent: 'center',
+                                            gap: '12px',
+                                            height: '60px',
+                                            fontSize: '1.1rem',
+                                            borderRadius: '16px',
+                                            boxShadow: '0 12px 24px -6px rgba(99, 102, 241, 0.4)',
+                                            transition: 'var(--transition)'
+                                        }}
+                                        onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                                        onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                                    >
+                                        <CreditCard size={22} strokeWidth={2.5} />
+                                        Proceed to Checkout
+                                    </button>
 
-                                <Link
-                                    to="/courses"
-                                    className="btn btn-ghost"
-                                    style={{ width: '100%', justifyContent: 'center', marginTop: '12px' }}
-                                >
-                                    Continue Shopping
-                                </Link>
+                                    <Link
+                                        to="/courses"
+                                        className="btn btn-ghost"
+                                        style={{
+                                            width: '100%',
+                                            justifyContent: 'center',
+                                            fontSize: '0.95rem',
+                                            fontWeight: '700',
+                                            color: 'var(--text-secondary)',
+                                            height: '48px'
+                                        }}
+                                    >
+                                        Continue Shopping
+                                    </Link>
+                                </div>
+
+                                {/* Trust Elements */}
+                                <div style={{
+                                    marginTop: '28px',
+                                    paddingTop: '24px',
+                                    borderTop: '1px solid var(--border-light)',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    gap: '12px'
+                                }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: '500' }}>
+                                        <div style={{
+                                            width: '20px', height: '20px', borderRadius: '50%',
+                                            background: '#dcfce7', color: '#166534',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            flexShrink: 0
+                                        }}>
+                                            <Check size={12} strokeWidth={4} />
+                                        </div>
+                                        Secure encrypted checkout
+                                    </div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: '500' }}>
+                                        <div style={{
+                                            width: '20px', height: '20px', borderRadius: '50%',
+                                            background: '#dcfce7', color: '#166534',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            flexShrink: 0
+                                        }}>
+                                            <Check size={12} strokeWidth={4} />
+                                        </div>
+                                        30-day money-back guarantee
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

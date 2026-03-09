@@ -19,7 +19,11 @@ const CATEGORY_MAP = {
     'Web Development': 'web-dev',
     'Data Science': 'data-sience',
     'Marketing': 'marketing',
-    'Mobile Development': 'mobile-dev'
+    'Mobile Development': 'mobile-dev',
+    'Design': 'Design',
+    'DevOps': 'DevOps',
+    'Machine Learning': 'ML',
+    'Business': 'business'
 };
 
 async function updateToLocalImages() {
